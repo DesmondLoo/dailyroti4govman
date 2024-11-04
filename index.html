@@ -1,0 +1,56 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Daily Image Gallery</title>
+    <link rel="stylesheet" href="css/styles.css">
+</head>
+<body>
+    <div class="daily-image-container">
+        <div class="content-wrapper">
+            <header class="site-header">
+                <h1>Daily Image Gallery</h1>
+                <div class="date-display">
+                    <svg class="calendar-icon" xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                        <rect x="3" y="4" width="18" height="18" rx="2" ry="2"></rect>
+                        <line x1="16" y1="2" x2="16" y2="6"></line>
+                        <line x1="8" y1="2" x2="8" y2="6"></line>
+                        <line x1="3" y1="10" x2="21" y2="10"></line>
+                    </svg>
+                    <span id="current-date"></span>
+                </div>
+            </header>
+
+            <div class="card">
+                <div class="card-header">
+                    <h2>Today's Featured Image</h2>
+                </div>
+                <div class="card-content">
+                    <div class="image-container">
+                        <img id="daily-image" src="" alt="Daily featured image">
+                        <div class="image-caption">
+                            <h2 id="image-caption"></h2>
+                        </div>
+                    </div>
+                    
+                    <div class="emoticon-selector">
+                        <h3>How does this image make you feel?</h3>
+                        <div class="emoticon-grid" id="emoticon-grid">
+                            <!-- Emoticons will be inserted here by JavaScript -->
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <footer class="site-footer">
+                <p>A new image appears each day. Come back tomorrow!</p>
+            </footer>
+        </div>
+    </div>
+
+    <script src="js/imageService.js"></script>
+    <script src="js/emoticonService.js"></script>
+    <script src="js/main.js"></script>
+</body>
+</html>
