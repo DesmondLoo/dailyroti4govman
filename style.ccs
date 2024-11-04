@@ -1,0 +1,161 @@
+/* General Styles */
+body {
+    margin: 0;
+    font-family: system-ui, -apple-system, sans-serif;
+}
+
+.daily-image-container {
+    min-height: 100vh;
+    background-color: #f3f4f6;
+    padding: 2rem;
+}
+
+.content-wrapper {
+    max-width: 64rem;
+    margin: 0 auto;
+}
+
+/* Header Styles */
+.site-header {
+    text-align: center;
+    margin-bottom: 2rem;
+}
+
+.site-header h1 {
+    font-size: 2.25rem;
+    font-weight: 700;
+    color: #1f2937;
+    margin-bottom: 0.5rem;
+}
+
+.date-display {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    color: #4b5563;
+}
+
+.calendar-icon {
+    margin-right: 0.5rem;
+}
+
+/* Card Styles */
+.card {
+    background-color: white;
+    border-radius: 0.5rem;
+    box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.1);
+    margin-bottom: 2rem;
+}
+
+.card-header {
+    padding: 1.5rem;
+    border-bottom: 1px solid #e5e7eb;
+}
+
+.card-header h2 {
+    margin: 0;
+    font-size: 1.5rem;
+    font-weight: 600;
+    text-align: center;
+    color: #1f2937;
+}
+
+.card-content {
+    padding: 1.5rem;
+}
+
+/* Image Container Styles */
+.image-container {
+    position: relative;
+    margin-bottom: 2rem;
+}
+
+.image-container img {
+    width: 100%;
+    height: auto;
+    border-radius: 0.5rem;
+    box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.1);
+}
+
+.image-caption {
+    position: absolute;
+    bottom: 0;
+    left: 0;
+    right: 0;
+    background-color: rgba(0, 0, 0, 0.5);
+    color: white;
+    padding: 1rem;
+    border-bottom-left-radius: 0.5rem;
+    border-bottom-right-radius: 0.5rem;
+}
+
+.image-caption h2 {
+    margin: 0;
+    font-size: 1.25rem;
+    font-weight: 600;
+}
+
+/* Emoticon Selector Styles */
+.emoticon-selector {
+    margin-top: 2rem;
+    text-align: center;
+}
+
+.emoticon-selector h3 {
+    font-size: 1.25rem;
+    color: #4b5563;
+    margin-bottom: 1rem;
+}
+
+.emoticon-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(100px, 1fr));
+    gap: 1rem;
+    max-width: 600px;
+    margin: 0 auto;
+}
+
+.emoticon-button {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    padding: 0.75rem;
+    border: 2px solid #e5e7eb;
+    border-radius: 0.5rem;
+    background-color: white;
+    cursor: pointer;
+    transition: all 0.2s ease-in-out;
+}
+
+.emoticon-button:hover {
+    border-color: #93c5fd;
+    transform: translateY(-2px);
+}
+
+.emoticon-button.selected {
+    border-color: #3b82f6;
+    background-color: #eff6ff;
+}
+
+.emoticon-symbol {
+    font-size: 2rem;
+    margin-bottom: 0.25rem;
+}
+
+.emoticon-label {
+    font-size: 0.875rem;
+    color: #4b5563;
+    margin-bottom: 0.25rem;
+}
+
+.emoticon-count {
+    font-size: 0.75rem;
+    color: #6b7280;
+}
+
+/* Footer Styles */
+.site-footer {
+    text-align: center;
+    color: #4b5563;
+    margin-top: 2rem;
+}
