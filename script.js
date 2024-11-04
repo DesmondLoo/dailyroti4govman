@@ -25,12 +25,12 @@ class ImageService {
 class EmoticonService {
     constructor() {
         this.emoticons = [
-            { id: 1, symbol: '😍', label: 'Love it!', count: 42 },
-            { id: 2, symbol: '😊', label: 'Happy', count: 38 },
-            { id: 3, symbol: '🤔', label: 'Interesting', count: 25 },
-            { id: 4, symbol: '😮', label: 'Wow', count: 18 },
-            { id: 5, symbol: '😢', label: 'Sad', count: 12 },
-            { id: 6, symbol: '😴', label: 'Boring', count: 8 }
+            { id: 1, symbol: '😍', label: 'Love it!', count: 0 },
+            { id: 2, symbol: '😊', label: 'Happy', count: 0 },
+            { id: 3, symbol: '🤔', label: 'Interesting', count: 0 },
+            { id: 4, symbol: '😮', label: 'Wow', count: 0 },
+            { id: 5, symbol: '😢', label: 'Sad', count: 0 },
+            { id: 6, symbol: '😴', label: 'Boring', count: 0 }
         ];
     }
 
