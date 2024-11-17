@@ -1,171 +1,171 @@
-// js/imageService.js
-// Previous ImageService class remains the same
-
-// js/emoticonService.js
-class EmoticonService {
-    constructor() {
-        // Initialize all emotions with count 0
-        this.emoticons = [
-            { id: 1, symbol: '😍', label: 'Love it!', count: 0, userVotes: 0 },
-            { id: 2, symbol: '😊', label: 'Happy', count: 0, userVotes: 0 },
-            { id: 3, symbol: '🤔', label: 'Interesting', count: 0, userVotes: 0 },
-            { id: 4, symbol: '😮', label: 'Wow', count: 0, userVotes: 0 },
-            { id: 5, symbol: '😢', label: 'Sad', count: 0, userVotes: 0 },
-            { id: 6, symbol: '😴', label: 'Boring', count: 0, userVotes: 0 }
-        ];
-        this.initializeForToday();
+// Configuration for local image paths
+const pictureDatabase = [
+    { 
+        id: 1, 
+        title: "Breaking Rules",
+        imageUrl: "/images/wisdom/breaking-rules.jpg", 
+        alt: "Thinking of breaking some rules - wisdom quote" 
+    },
+    { 
+        id: 2, 
+        title: "Rocking the Boat",
+        imageUrl: "/images/wisdom/rocking-boat.jpg", 
+        alt: "Rocking the boat - wisdom quote" 
+    },
+    { 
+        id: 3, 
+        title: "Group Think",
+        imageUrl: "/images/wisdom/group-think.jpg", 
+        alt: "Group think - wisdom quote" 
     }
+];
 
-    initializeForToday() {
-        const today = new Date().toLocaleDateString();
-        const savedData = localStorage.getItem('emoticons');
-        const savedDate = localStorage.getItem('lastUpdateDate');
+const bannerImages = {
+    title: '/images/banners/main-banner.jpg',
+    resources: '/images/banners/resources-banner.jpg',
+    feedback: '/images/banners/feedback-banner.jpg'
+};
 
-        if (savedData && savedDate === today) {
-            // Load today's data if it exists
-            this.emoticons = JSON.parse(savedData);
-        } else {
-            // Reset counts for a new day
-            this.emoticons.forEach(emoticon => {
-                emoticon.count = 0;
-                emoticon.userVotes = 0;
-            });
-            this.saveReactions();
-            localStorage.setItem('lastUpdateDate', today);
-        }
+const resources = [
+    {
+        title: "Nature Photography Tips",
+        url: "https://example.com/photo-tips",
+        description: "Learn how to capture stunning nature photographs"
+    },
+    {
+        title: "Photography Community",
+        url: "https://example.com/community",
+        description: "Join our photography community"
+    },
+    {
+        title: "Submit Your Photos",
+        url: "https://example.com/submit",
+        description: "Share your best shots with us"
     }
+];
 
-    getEmoticons() {
-        return this.emoticons;
-    }
+// State management
+let currentPicture = null;
+const ratings = {
+    awesome: 0,
+    boring: 0,
+    reflective: 0
+};
+let userRated = false;
 
-    updateReaction(emoticonId, increment) {
-        const emoticon = this.emoticons.find(e => e.id === emoticonId);
-        if (emoticon) {
-            if (increment && emoticon.userVotes < 10) { // Limit to 10 votes per emotion
-                emoticon.count++;
-                emoticon.userVotes++;
-            } else if (!increment && emoticon.userVotes > 0) {
-                emoticon.count--;
-                emoticon.userVotes--;
-            }
-            this.saveReactions();
-            return emoticon;
-        }
-        return null;
-    }
-
-    saveReactions() {
-        localStorage.setItem('emoticons', JSON.stringify(this.emoticons));
-    }
-
-    clearAllReactions() {
-        this.emoticons.forEach(emoticon => {
-            emoticon.count = 0;
-            emoticon.userVotes = 0;
-        });
-        this.saveReactions();
-    }
-}
-
-// js/main.js
+// DOM Elements
 document.addEventListener('DOMContentLoaded', function() {
-    // Initialize services
-    const imageService = new ImageService();
-    const emoticonService = new EmoticonService();
-    
-    // Set current date
-    const today = new Date();
-    document.getElementById('current-date').textContent = today.toLocaleDateString('en-US', {
-        weekday: 'long',
-        year: 'numeric',
-        month: 'long',
-        day: 'numeric'
-    });
-    
-    // Set daily image
-    const todayImage = imageService.getTodayImage();
-    const imgElement = document.getElementById('daily-image');
-    imgElement.src = `/api/placeholder/${todayImage.width}/${todayImage.height}`;
-    imgElement.alt = todayImage.caption;
-    document.getElementById('image-caption').textContent = todayImage.caption;
-    
-    // Setup emoticons
-    const emoticonGrid = document.getElementById('emoticon-grid');
-    let selectedButton = null;
-    
-    function updateButtonState(button, emoticon) {
-        const decreaseBtn = button.querySelector('.decrease');
-        const increaseBtn = button.querySelector('.increase');
-        const countSpan = button.querySelector('.emoticon-count');
-        const votesLeft = button.querySelector('.votes-left');
-        
-        decreaseBtn.disabled = emoticon.userVotes === 0;
-        increaseBtn.disabled = emoticon.userVotes >= 10;
-        countSpan.textContent = emoticon.count;
-        votesLeft.textContent = `${10 - emoticon.userVotes} votes left`;
+    const wisdomImage = document.getElementById('wisdomImage');
+    const bannerImage = document.getElementById('bannerImage');
+    const currentDateElement = document.getElementById('currentDate');
+    const thankYouMessage = document.getElementById('thankYouMessage');
+    const resourcesGrid = document.getElementById('resourcesGrid');
+
+    // Initialize the page
+    function initializePage() {
+        setupBannerImages();
+        setupCurrentDate();
+        selectTodaysPicture();
+        setupRatingButtons();
+        populateResources();
     }
 
-    emoticonService.getEmoticons().forEach(emoticon => {
-        const button = document.createElement('button');
-        button.className = 'emoticon-button';
-        button.dataset.emoticonId = emoticon.id;
-        
-        button.innerHTML = `
-            <span class="emoticon-symbol">${emoticon.symbol}</span>
-            <span class="emoticon-label">${emoticon.label}</span>
-            <div class="emoticon-count-container">
-                <button class="count-button decrease" ${emoticon.count === 0 ? 'disabled' : ''}>-</button>
-                <span class="emoticon-count">${emoticon.count}</span>
-                <button class="count-button increase">+</button>
-            </div>
-            <div class="votes-left">${10 - emoticon.userVotes} votes left</div>
-        `;
-        
-        // Handle emoticon selection
-        button.addEventListener('click', function(e) {
-            if (!e.target.classList.contains('count-button')) {
-                if (selectedButton) {
-                    selectedButton.classList.remove('selected');
-                }
-                button.classList.add('selected');
-                selectedButton = button;
-            }
-        });
-        
-        // Handle count buttons
-        const countContainer = button.querySelector('.emoticon-count-container');
-        countContainer.addEventListener('click', function(e) {
-            e.stopPropagation();
-            
-            if (e.target.classList.contains('count-button')) {
-                const increment = e.target.classList.contains('increase');
-                const updatedEmoticon = emoticonService.updateReaction(emoticon.id, increment);
-                
-                if (updatedEmoticon) {
-                    updateButtonState(button, updatedEmoticon);
-                }
-            }
-        });
-        
-        emoticonGrid.appendChild(button);
-    });
-
-    // Add reset button
-    const resetButton = document.createElement('button');
-    resetButton.className = 'reset-button';
-    resetButton.textContent = 'Reset All Reactions';
-    resetButton.addEventListener('click', () => {
-        if (confirm('Are you sure you want to reset all reactions?')) {
-            emoticonService.clearAllReactions();
-            const buttons = document.querySelectorAll('.emoticon-button');
-            buttons.forEach(button => {
-                const emoticon = emoticonService.getEmoticons().find(
-                    e => e.id === parseInt(button.dataset.emoticonId)
-                );
-                updateButtonState(button, emoticon);
-            });
+    // Setup banner images
+    function setupBannerImages() {
+        if (bannerImage) {
+            bannerImage.src = bannerImages.title;
         }
-    });
-    emoticonGrid.insertAdjacentElement('afterend', resetButton);
+        
+        // Set resources and feedback banner backgrounds
+        const resourcesBanner = document.querySelector('.resources-banner');
+        const feedbackBanner = document.querySelector('.feedback-banner');
+        
+        if (resourcesBanner) {
+            resourcesBanner.style.backgroundImage = `url(${bannerImages.resources})`;
+        }
+        if (feedbackBanner) {
+            feedbackBanner.style.backgroundImage = `url(${bannerImages.feedback})`;
+        }
+    }
+
+    // Setup current date with proper formatting
+    function setupCurrentDate() {
+        if (currentDateElement) {
+            const date = new Date();
+            const options = { 
+                weekday: 'long', 
+                year: 'numeric', 
+                month: 'long', 
+                day: 'numeric' 
+            };
+            currentDateElement.textContent = date.toLocaleDateString('en-GB', options);
+        }
+    }
+
+    // Select today's picture
+    function selectTodaysPicture() {
+        if (wisdomImage) {
+            const date = new Date();
+            const dayOfYear = Math.floor((date - new Date(date.getFullYear(), 0, 0)) / (1000 * 60 * 60 * 24));
+            const pictureIndex = dayOfYear % pictureDatabase.length;
+            currentPicture = pictureDatabase[pictureIndex];
+            wisdomImage.src = currentPicture.imageUrl;
+            wisdomImage.alt = currentPicture.alt;
+        }
+    }
+
+    // Setup rating buttons
+    function setupRatingButtons() {
+        const buttons = document.querySelectorAll('.rating-button');
+        buttons.forEach(button => {
+            button.addEventListener('click', handleRating);
+        });
+    }
+
+    // Handle rating click
+    function handleRating(event) {
+        if (userRated) return;
+
+        const ratingType = event.currentTarget.dataset.rating;
+        ratings[ratingType]++;
+        userRated = true;
+
+        // Update count display
+        const countElement = event.currentTarget.querySelector('.count');
+        countElement.textContent = ratings[ratingType];
+
+        // Disable all buttons
+        const buttons = document.querySelectorAll('.rating-button');
+        buttons.forEach(button => button.disabled = true);
+
+        // Show thank you message
+        if (thankYouMessage) {
+            thankYouMessage.classList.remove('hidden');
+        }
+    }
+
+    // Populate resources grid
+    function populateResources() {
+        if (resourcesGrid) {
+            resourcesGrid.innerHTML = resources.map(resource => `
+                <a href="${resource.url}" 
+                   target="_blank" 
+                   rel="noopener noreferrer"
+                   class="resource-card">
+                    <div class="resource-title">
+                        <span>${resource.title}</span>
+                        <svg class="external-link-icon" viewBox="0 0 24 24" width="16" height="16">
+                            <path d="M18 13v6a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V8a2 2 0 0 1 2-2h6"></path>
+                            <polyline points="15 3 21 3 21 9"></polyline>
+                            <line x1="10" y1="14" x2="21" y2="3"></line>
+                        </svg>
+                    </div>
+                    <p class="resource-description">${resource.description}</p>
+                </a>
+            `).join('');
+        }
+    }
+
+    // Initialize everything
+    initializePage();
 });
