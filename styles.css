@@ -1,21 +1,238 @@
-/* styles.css */
-@tailwind base;
-@tailwind components;
-@tailwind utilities;
-
-/* Custom styles */
-.btn {
-  @apply h-12 px-6 rounded-md border border-gray-300 transition-colors;
+/* Global styles */
+:root {
+    --primary-color: #3b82f6;
+    --text-color: #111827;
+    --gray-600: #4b5563;
+    --gray-100: #f3f4f6;
 }
 
-.btn-awesome {
-  @apply hover:bg-yellow-50;
+body {
+    margin: 0;
+    padding: 0;
+    font-family: system-ui, -apple-system, sans-serif;
+    background-color: #f9fafb;
+    min-height: 100vh;
 }
 
-.btn-boring {
-  @apply hover:bg-gray-50;
+/* Header styles */
+.fixed-header {
+    position: fixed;
+    top: 0;
+    left: 0;
+    right: 0;
+    background: white;
+    border-bottom: 1px solid #e5e7eb;
+    z-index: 50;
+    box-shadow: 0 1px 2px 0 rgba(0, 0, 0, 0.05);
 }
 
-.btn-reflective {
-  @apply hover:bg-blue-50;
+.header-container {
+    max-width: 64rem;
+    margin: 0 auto;
+    padding: 0 1rem;
+}
+
+.header-content {
+    padding: 1rem 0;
+}
+
+.header-flex {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+}
+
+.header-title {
+    font-size: 1.5rem;
+    font-weight: 700;
+    color: var(--text-color);
+}
+
+.header-nav {
+    display: flex;
+    gap: 1.5rem;
+}
+
+.nav-link {
+    display: flex;
+    align-items: center;
+    gap: 0.5rem;
+    color: var(--gray-600);
+    text-decoration: none;
+    transition: color 0.2s;
+}
+
+.nav-link:hover {
+    color: var(--primary-color);
+}
+
+/* Main content styles */
+.main-content {
+    max-width: 64rem;
+    margin: 0 auto;
+    padding: 5rem 1rem 1rem;
+    display: flex;
+    flex-direction: column;
+    gap: 2rem;
+}
+
+/* Banner styles */
+.banner-container {
+    background: white;
+    border-radius: 0.5rem;
+    overflow: hidden;
+    box-shadow: 0 1px 3px 0 rgba(0, 0, 0, 0.1);
+}
+
+.banner-wrapper {
+    padding: 1.5rem;
+}
+
+.banner-image {
+    width: 100%;
+    height: 250px;
+    object-fit: cover;
+    border-radius: 0.5rem;
+}
+
+.date-display {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 0.5rem;
+    margin-top: 1rem;
+    color: var(--gray-600);
+}
+
+/* Card styles */
+.card {
+    background: white;
+    border-radius: 0.5rem;
+    overflow: hidden;
+    box-shadow: 0 1px 3px 0 rgba(0, 0, 0, 0.1);
+}
+
+.card-header {
+    padding: 1.5rem;
+}
+
+.card-title {
+    font-size: 1.25rem;
+    font-weight: 600;
+    text-align: center;
+    color: var(--gray-600);
+}
+
+.card-content {
+    padding: 1.5rem;
+}
+
+.card-footer {
+    padding: 1.5rem;
+}
+
+/* Wisdom image styles */
+.wisdom-image-container {
+    position: relative;
+    background: var(--gray-100);
+    border-radius: 0.5rem;
+    overflow: hidden;
+    aspect-ratio: 1200/628;
+}
+
+.wisdom-image {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+}
+
+/* Rating styles */
+.rating-container {
+    display: flex;
+    justify-content: center;
+    gap: 1rem;
+}
+
+.rating-button {
+    display: flex;
+    align-items: center;
+    gap: 0.5rem;
+    padding: 0.75rem 1.5rem;
+    border: 1px solid #e5e7eb;
+    border-radius: 0.375rem;
+    background: white;
+    cursor: pointer;
+    transition: background-color 0.2s;
+}
+
+.rating-button:hover {
+    background-color: var(--gray-100);
+}
+
+.rating-button:disabled {
+    opacity: 0.5;
+    cursor: not-allowed;
+}
+
+.emoji {
+    font-size: 1.5rem;
+}
+
+.count {
+    font-size: 0.875rem;
+    color: var(--gray-600);
+}
+
+/* Section styles */
+.section-container {
+    display: flex;
+    flex-direction: column;
+    gap: 1.5rem;
+}
+
+.section-banner {
+    width: 100%;
+    height: 250px;
+    object-fit: cover;
+    border-radius: 0.5rem;
+    box-shadow: 0 1px 3px 0 rgba(0, 0, 0, 0.1);
+}
+
+/* Resources grid */
+.resources-grid {
+    display: grid;
+    gap: 1rem;
+    grid-template-columns: repeat(1, 1fr);
+    padding: 1.5rem;
+}
+
+@media (min-width: 768px) {
+    .resources-grid {
+        grid-template-columns: repeat(3, 1fr);
+    }
+}
+
+/* Feedback styles */
+.feedback-content {
+    padding: 1.5rem;
+    text-align: center;
+}
+
+.feedback-link {
+    display: inline-flex;
+    align-items: center;
+    gap: 0.5rem;
+    color: var(--primary-color);
+    text-decoration: none;
+    font-weight: 500;
+    margin-top: 1rem;
+}
+
+.feedback-link:hover {
+    color: #2563eb;
+}
+
+/* Utility classes */
+.hidden {
+    display: none;
 }
