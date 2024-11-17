@@ -1,101 +1,85 @@
-// Configuration
+// Image Configuration
 const pictureDatabase = [
     { 
         id: 1, 
-        title: "Breaking Rules",
         imageUrl: "/images/1.png", 
         alt: "Thinking of breaking some rules - wisdom quote" 
     },
     { 
         id: 2, 
-        title: "Rocking the Boat",
         imageUrl: "/images/2.png", 
         alt: "Rocking the boat - wisdom quote" 
     },
     { 
         id: 3, 
-        title: "Group Think",
         imageUrl: "/images/3.png", 
         alt: "Group think - wisdom quote" 
     }
 ];
 
 const bannerImages = {
-    title: '/images/top-banner.png',
-    resources: '/images/resources-banner.png',
-    feedback: '/images/feedback-banner.png'
+    title: '/images/banner-top.png',
+    resources: '/images/banner-resources.png',
+    feedback: '/images/banner-feedback.png'
 };
 
-const resources = [
-    {
-        title: "Resource 1",
-        url: "#",
-        description: "Resource description goes here"
-    },
-    {
-        title: "Resource 2",
-        url: "#",
-        description: "Resource description goes here"
-    },
-    {
-        title: "Resource 3",
-        url: "#",
-        description: "Resource description goes here"
-    }
-];
-
-// State
-let userRated = false;
-const ratings = {
+// State Management
+let ratings = {
     awesome: 0,
     boring: 0,
     reflective: 0
 };
+let userRated = false;
+
+// DOM Elements
+const mainBanner = document.getElementById('mainBanner');
+const currentDateElement = document.getElementById('currentDate');
+const wisdomImage = document.getElementById('wisdomImage');
+const resourcesBanner = document.getElementById('resourcesBanner');
+const feedbackBanner = document.getElementById('feedbackBanner');
+const thankYouMessage = document.getElementById('thankYouMessage');
+const ratingButtons = document.querySelectorAll('.rating-button');
 
 // Initialize the page
-document.addEventListener('DOMContentLoaded', function() {
+function initializePage() {
     setupBanners();
-    setupDate();
-    setupWisdomImage();
+    setupCurrentDate();
+    selectTodaysPicture();
     setupRatingButtons();
-    setupResources();
-});
+}
 
 // Setup banner images
 function setupBanners() {
-    document.getElementById('mainBanner').src = bannerImages.title;
-    document.getElementById('resourcesBanner').src = bannerImages.resources;
-    document.getElementById('feedbackBanner').src = bannerImages.feedback;
+    mainBanner.src = bannerImages.title;
+    resourcesBanner.src = bannerImages.resources;
+    feedbackBanner.src = bannerImages.feedback;
 }
 
-// Setup date display
-function setupDate() {
-    const currentDate = new Date();
+// Setup current date
+function setupCurrentDate() {
     const formattedDate = new Intl.DateTimeFormat('en-GB', {
         weekday: 'long',
         day: 'numeric',
         month: 'long',
         year: 'numeric'
-    }).format(currentDate);
-    document.getElementById('currentDate').textContent = formattedDate;
+    }).format(new Date());
+    currentDateElement.textContent = formattedDate;
 }
 
-// Setup wisdom image
-function setupWisdomImage() {
+// Select today's picture
+function selectTodaysPicture() {
     const currentDate = new Date();
     const dayOfYear = Math.floor((currentDate - new Date(currentDate.getFullYear(), 0, 0)) / (1000 * 60 * 60 * 24));
     const pictureIndex = dayOfYear % pictureDatabase.length;
     const todaysPicture = pictureDatabase[pictureIndex];
-
-    const wisdomImage = document.getElementById('wisdomImage');
+    
     wisdomImage.src = todaysPicture.imageUrl;
     wisdomImage.alt = todaysPicture.alt;
 }
 
 // Setup rating buttons
 function setupRatingButtons() {
-    const buttons = document.querySelectorAll('.rating-button');
-    buttons.forEach(button => {
+    ratingButtons.forEach(button => {
         button.addEventListener('click', handleRating);
     });
 }
@@ -109,24 +93,17 @@ function handleRating(event) {
     userRated = true;
 
     // Update count display
-    event.currentTarget.querySelector('.count').textContent = ratings[ratingType];
+    const countElement = event.currentTarget.querySelector('.count');
+    countElement.textContent = ratings[ratingType];
 
-    // Disable all buttons
-    document.querySelectorAll('.rating-button').forEach(button => {
+    // Disable all rating buttons
+    ratingButtons.forEach(button => {
         button.disabled = true;
     });
 
     // Show thank you message
-    document.getElementById('thankYouMessage').classList.remove('hidden');
+    thankYouMessage.classList.remove('hidden');
 }
 
-// Setup resources grid
-function setupResources() {
-    const resourcesGrid = document.querySelector('.resources-grid');
-    resourcesGrid.innerHTML = resources.map(resource => `
-        <a href="${resource.url}" class="resource-link">
-            <h3 class="resource-title">${resource.title}</h3>
-            <p class="resource-description">${resource.description}</p>
-        </a>
-    `).join('');
-}
+// Initialize when the page loads
+document.addEventListener('DOMContentLoaded', initializePage);

@@ -8,14 +8,11 @@
 </head>
 <body>
     <!-- Static Header -->
-    <header class="fixed-header">
+    <header class="header">
         <div class="header-container">
             <div class="header-content">
                 <div class="header-flex">
-                    <!-- Title -->
                     <h1 class="header-title">DailyRoti4GovPeeps</h1>
-                    
-                    <!-- Navigation -->
                     <nav class="header-nav">
                         <a href="/" class="nav-link">
                             <i class="icon-home"></i>
@@ -34,24 +31,24 @@
     <!-- Main Content -->
     <main class="main-content">
         <!-- Title Banner -->
-        <div class="banner-container">
-            <div class="banner-wrapper">
+        <div class="banner main-banner">
+            <div class="banner-container">
                 <img id="mainBanner" alt="DailyRoti for GovPeeps" class="banner-image">
                 <div class="date-display">
                     <i class="icon-clock"></i>
-                    <span id="currentDate" class="date-text"></span>
+                    <span id="currentDate"></span>
                 </div>
             </div>
         </div>
 
-        <!-- Main Picture Card -->
+        <!-- Daily Wisdom -->
         <div class="card wisdom-card">
             <div class="card-header">
                 <h2 class="card-title">Today's Words of Wisdom</h2>
             </div>
             <div class="card-content">
                 <div class="wisdom-image-container">
-                    <img id="wisdomImage" alt="" class="wisdom-image">
+                    <img id="wisdomImage" alt="Wisdom of the day" class="wisdom-image">
                 </div>
             </div>
             <div class="card-footer">
@@ -69,32 +66,42 @@
                         <span class="count">0</span>
                     </button>
                 </div>
-                <p id="thankYouMessage" class="thank-you hidden">
-                    Thanks for sharing your reaction!
-                </p>
+                <p id="thankYouMessage" class="thank-you hidden">Thanks for sharing your reaction!</p>
             </div>
         </div>
 
         <!-- Resources Section -->
-        <div class="section-container">
-            <img id="resourcesBanner" alt="Resources" class="section-banner">
+        <div class="section resources-section">
+            <div class="banner resources-banner">
+                <img id="resourcesBanner" alt="Resources" class="banner-image">
+            </div>
             <div class="card">
                 <div class="resources-grid">
-                    <!-- Resources will be populated by JavaScript -->
+                    <a href="https://www.github.com" class="resource-link">
+                        <img src="/api/placeholder/300/300?text=Resource+1" alt="Resource 1" class="resource-image">
+                    </a>
+                    <a href="https://www.github.com" class="resource-link">
+                        <img src="/api/placeholder/300/300?text=Resource+2" alt="Resource 2" class="resource-image">
+                    </a>
+                    <a href="https://www.github.com" class="resource-link">
+                        <img src="/api/placeholder/300/300?text=Resource+3" alt="Resource 3" class="resource-image">
+                    </a>
                 </div>
             </div>
         </div>
 
         <!-- Feedback Section -->
-        <div class="section-container">
-            <img id="feedbackBanner" alt="Feedback" class="section-banner">
+        <div class="section feedback-section">
+            <div class="banner feedback-banner">
+                <img id="feedbackBanner" alt="Feedback" class="banner-image">
+            </div>
             <div class="card">
                 <div class="feedback-content">
-                    <p>We welcome your feedback! Have an inspiring story or photograph to share with our community?</p>
-                    <p>We'd love to feature your work and hear your suggestions for making our gallery even better.</p>
-                    <a href="mailto:looatzoo@hotmail.com" class="feedback-link">
+                    <p class="feedback-text">We welcome your feedback! Have an inspiring story or photograph to share with our community?</p>
+                    <p class="feedback-text">We'd love to feature your work and hear your suggestions for making our gallery even better.</p>
+                    <a href="mailto:feedback@gallery.com" class="feedback-link">
                         <i class="icon-mail"></i>
-                        Contact Us at looatzoo@hotmail.com
+                        Contact Us at feedback@gallery.com
                     </a>
                 </div>
             </div>
