@@ -22,8 +22,8 @@ const pictureDatabase = [
 
 const bannerImages = {
     title: '/Images/Top Banner.png',
-    resources: '/api/placeholder/1200/300?text=Resources',
-    feedback: '/api/placeholder/1200/300?text=Feedback'
+    resources: '/Images/Resources Banner.png',
+    feedback: '/Image/Feedback Banner.png'
 };
 
 const resources = [
