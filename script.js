@@ -21,9 +21,9 @@ const pictureDatabase = [
 ];
 
 const bannerImages = {
-    title: '/images/banners/main-banner.jpg',
-    resources: '/images/banners/resources-banner.jpg',
-    feedback: '/images/banners/feedback-banner.jpg'
+    title: '/images/top-banner.png',
+    resources: '/images/resources-banner.png',
+    feedback: '/images/feedback-banner.png'
 };
 
 const resources = [
