@@ -77,11 +77,14 @@ body {
 }
 
 /* Banner styles */
+
 .banner-container {
-    background: white;
-    border-radius: 0.5rem;
-    box-shadow: 0 1px 3px 0 rgba(0, 0, 0, 0.1);
-}
+    max-width: 1024px;
+    width: 100%;
+    height: 250px;
+    margin-left: auto;
+    margin-right: auto;
+  }
 
 .banner-wrapper {
     padding: 1.5rem;
@@ -89,10 +92,9 @@ body {
 
 .banner-image {
     width: 100%;
-    height: 250px;
+    height: 100%;
     object-fit: cover;
-    border-radius: 0.5rem;
-}
+  }
 
 .date-display {
     display: flex;
