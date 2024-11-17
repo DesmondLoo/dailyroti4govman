@@ -89,7 +89,7 @@ body {
 }
 
 .banner-image {
-    width: 100%;
+    width: 1200px;
     height: 250px;
     object-fit: cover;
     border-radius: 0.5rem;
