@@ -3,19 +3,19 @@ const pictureDatabase = [
     { 
         id: 1, 
         title: "Breaking Rules",
-        imageUrl: "/api/placeholder/800/450?text=Breaking+Rules", 
+        imageUrl: "/Images/1.png", 
         alt: "Thinking of breaking some rules - wisdom quote" 
     },
     { 
         id: 2, 
         title: "Rocking the Boat",
-        imageUrl: "/api/placeholder/800/450?text=Rocking+The+Boat", 
+        imageUrl: "/Images/2.png", 
         alt: "Rocking the boat - wisdom quote" 
     },
     { 
         id: 3, 
         title: "Group Think",
-        imageUrl: "/api/placeholder/800/450?text=Group+Think", 
+        imageUrl: "/Images/3.png", 
         alt: "Group think - wisdom quote" 
     }
 ];
@@ -23,7 +23,7 @@ const pictureDatabase = [
 const bannerImages = {
     title: '/Images/Top Banner.png',
     resources: '/Images/Resources Banner.png',
-    feedback: '/Image/Feedback Banner.png'
+    feedback: '/Images/Feedback Banner.png'
 };
 
 const resources = [
