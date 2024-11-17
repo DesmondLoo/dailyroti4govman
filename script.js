@@ -3,19 +3,19 @@ const pictureDatabase = [
     { 
         id: 1, 
         title: "Breaking Rules",
-        imageUrl: "/images/wisdom/breaking-rules.jpg", 
+        imageUrl: "/images/1.png", 
         alt: "Thinking of breaking some rules - wisdom quote" 
     },
     { 
         id: 2, 
         title: "Rocking the Boat",
-        imageUrl: "/images/wisdom/rocking-boat.jpg", 
+        imageUrl: "/images/2.png", 
         alt: "Rocking the boat - wisdom quote" 
     },
     { 
         id: 3, 
         title: "Group Think",
-        imageUrl: "/images/wisdom/group-think.jpg", 
+        imageUrl: "/images/3.png", 
         alt: "Group think - wisdom quote" 
     }
 ];
