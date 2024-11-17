@@ -21,7 +21,7 @@ const pictureDatabase = [
 ];
 
 const bannerImages = {
-    title: '/api/placeholder/1200/200?text=DailyRoti+for+GovPeeps',
+    title: '/Images/Top Banner.png',
     resources: '/api/placeholder/1200/300?text=Resources',
     feedback: '/api/placeholder/1200/300?text=Feedback'
 };
