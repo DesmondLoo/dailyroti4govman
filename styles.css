@@ -69,8 +69,9 @@ body {
 /* Main Content Styles */
 .main-content {
     max-width: var(--max-width);
-    margin: 7rem auto 0;
+    margin: 8rem auto 0;
     padding: 0 1rem;
+    padding-bottom: 5rem;
 }
 
 /* Banner Styles */
@@ -249,8 +250,11 @@ body {
     border-radius: 0.5rem;
     box-shadow: 0 1px 3px rgba(0, 0, 0, 0.1);
     padding: 1.5rem;
+    text-align: center;
 }
 
 .section {
     margin-top: 2rem;
 }
+
+
