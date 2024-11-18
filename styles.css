@@ -210,7 +210,7 @@ body {
     font-size: 1.5rem;
     font-weight: 700;
     color: var(--gray-900);
-    margin-bottom: 2rem;
+    margin-bottom: 0rem;
 }
 
 .past-issues-grid {
