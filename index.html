@@ -3,27 +3,25 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>DailyRoti4GovPeeps</title>
+    <title>DailyRoti Gallery</title>
     <link rel="stylesheet" href="styles.css">
 </head>
 <body>
-    <!-- Static Header -->
+    <!-- Header -->
     <header class="header">
         <div class="header-container">
             <div class="header-content">
-                <div class="header-flex">
-                    <h1 class="header-title">BETA VERSION</h1>
-                    <nav class="header-nav">
-                        <a href="/" class="nav-link">
-                            <i class="icon-home"></i>
-                            <span>Home</span>
-                        </a>
-                        <a href="/about" class="nav-link">
-                            <i class="icon-info"></i>
-                            <span>About Us</span>
-                        </a>
-                    </nav>
-                </div>
+                <h1 class="header-title">BETA VERSION</h1>
+                <nav class="header-nav">
+                    <a href="/" class="nav-link">
+                        <i class="icon-home"></i>
+                        <span>Home</span>
+                    </a>
+                    <a href="/about" class="nav-link">
+                        <i class="icon-info"></i>
+                        <span>About Us</span>
+                    </a>
+                </nav>
             </div>
         </div>
     </header>
@@ -32,74 +30,90 @@
     <main class="main-content">
         <!-- Title Banner -->
         <div class="banner main-banner">
-            <div class="banner-container">
-                <img id="mainBanner" alt="DailyRoti for GovPeeps" class="banner-image">
-                <div class="date-display">
-                    <i class="icon-clock"></i>
-                    <span id="currentDate"></span>
-                </div>
-            </div>
+            <img id="mainBanner" alt="Main Banner" class="banner-image">
         </div>
 
-        <!-- Daily Wisdom -->
-        <div class="card wisdom-card">
-                <div class="card-content">
-                <div class="wisdom-image-container">
-                    <img id="wisdomImage" alt="Wisdom of the day" class="wisdom-image">
-                </div>
+        <!-- Calendar -->
+        <div class="calendar-display">
+            <i class="icon-clock"></i>
+            <span id="currentDate" class="date-text"></span>
+        </div>
+
+        <!-- Main Picture -->
+        <div class="card main-picture">
+            <div class="picture-container">
+                <img id="dailyPicture" alt="Daily Wisdom" class="wisdom-image">
             </div>
-            <div class="card-footer">
-                <div class="rating-container">
-                    <button class="rating-button" data-rating="awesome">
-                        <span class="emoji">🤩</span>
-                        <span class="count">0</span>
-                    </button>
-                    <button class="rating-button" data-rating="boring">
-                        <span class="emoji">😴</span>
-                        <span class="count">0</span>
-                    </button>
-                    <button class="rating-button" data-rating="reflective">
-                        <span class="emoji">🤔</span>
-                        <span class="count">0</span>
-                    </button>
-                </div>
-                <p id="thankYouMessage" class="thank-you hidden">Thanks for sharing your reaction!</p>
+            <div class="reactions">
+                <button class="reaction-button" data-reaction="thoughtprovoking">
+                    <span class="emoji">🤔 Thought Provoking</span>
+                    <span class="count">0</span>
+                </button>
+                <button class="reaction-button" data-reaction="neutral">
+                    <span class="emoji">😐 Sure or not</span>
+                    <span class="count">0</span>
+                </button>
+                <button class="reaction-button" data-reaction="meh">
+                    <span class="emoji">😴 Meh</span>
+                    <span class="count">0</span>
+                </button>
             </div>
+            <style>
+                p {text-align: center;}
+            </style>
+            <p id="thankYouMessage" class="thank-you-message hidden">
+                Thanks for sharing your reaction!
+            </p>
         </div>
 
         <!-- Resources Section -->
-        <div class="section resources-section">
+        <div class="section resources">
             <div class="banner resources-banner">
                 <img id="resourcesBanner" alt="Resources" class="banner-image">
             </div>
-            <div class="card">
-                <div class="resources-grid">
-                    <a href="https://www.github.com" class="resource-link">
-                        <img src="/images/links-to-past-issues.png" alt="Resource 1" class="resource-image">
-                    </a>
-                    <a href="https://www.github.com" class="resource-link">
-                        <img src="/images/links-to-articles.png" alt="Resource 2" class="resource-image">
-                    </a>
-                    <a href="https://www.github.com" class="resource-link">
-                        <img src="/images/links-to-books.png" alt="Resource 3" class="resource-image">
-                    </a>
-                </div>
+            <div class="resources-grid">
+                <a href="#" class="resource-link">
+                    <img src="/images/links-to-past-issues.png" alt="Resource 1" class="resource-image">
+                </a>
+                <a href="#" class="resource-link">
+                    <img src="/images/links-to-articles.png" alt="Resource 2" class="resource-image">
+                </a>
+                <a href="#" class="resource-link">
+                    <img src="/images/links-to-books.png" alt="Resource 3" class="resource-image">
+                </a>
             </div>
         </div>
 
         <!-- Feedback Section -->
-        <div class="section feedback-section">
+        <div class="section feedback">
             <div class="banner feedback-banner">
                 <img id="feedbackBanner" alt="Feedback" class="banner-image">
             </div>
-            <div class="card">
-                <div class="feedback-content">
-                    <p class="feedback-text">Have an inspiring story to share?</p>
-                    <p class="feedback-text">We'd love to feature your work and hear your suggestions on .</p>
-                    <a href="mailto:feedback@gallery.com" class="feedback-link">
-                        <i class="icon-mail"></i>
-                        Contact Us at feedback@gallery.com
-                    </a>
+            <div class="card feedback-content">
+                <p>We welcome your feedback! Have an inspiring story or photograph to share with our community?</p>
+                <p>We'd love to feature your work and hear your suggestions for making our gallery even better.</p>
+                <a href="mailto:feedback@gallery.com" class="feedback-link">
+                    <i class="icon-mail"></i>
+                    Contact Us at feedback@gallery.com
+                </a>
+            </div>
+        </div>
+
+        <!-- Past Issues Section -->
+        <div class="section past-issues">
+            <h2 class="section-title">Past Issues</h2>
+            <div class="past-issues-grid">
+                <div class="past-issue">
+                    <h3 class="past-issue-title">Breaking Rules: The Art of Innovation</h3>
+                    <img src="/api/placeholder/1200/628?text=Past+Issue+1" alt="Past Issue 1" class="past-issue-image">
+                </div>
+                <div class="past-issue">
+                    <h3 class="past-issue-title">Rocking the Boat: Navigating Change</h3>
+                    <img src="/api/placeholder/1200/628?text=Past+Issue+2" alt="Past Issue 2" class="past-issue-image">
+                </div>
+                <div class="past-issue">
+                    <h3 class="past-issue-title">Group Think: Understanding Collective Wisdom</h3>
+                    <img src="/api/placeholder/1200/628?text=Past+Issue+3" alt="Past Issue 3" class="past-issue-image">
                 </div>
             </div>
         </div>

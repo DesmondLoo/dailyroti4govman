@@ -1,109 +1,114 @@
-// Image Configuration
-const pictureDatabase = [
-    { 
-        id: 1, 
-        imageUrl: "/images/1.png", 
-        alt: "Thinking of breaking some rules - wisdom quote" 
+// Configuration
+const config = {
+    banners: {
+        title: '/images/banner-top.jpg',
+        resources: '/images/banner-resources.png',
+        feedback: '/images/banner-feedback.png'
     },
-    { 
-        id: 2, 
-        imageUrl: "/images/2.png", 
-        alt: "Rocking the boat - wisdom quote" 
-    },
-    { 
-        id: 3, 
-        imageUrl: "/images/3.png", 
-        alt: "Group think - wisdom quote" 
-    }
-];
-
-const bannerImages = {
-    title: '/images/banner-top.png',
-    resources: '/images/banner-resources.png',
-    feedback: '/images/banner-feedback.png'
+    pictureDatabase: [
+        { 
+            id: 1, 
+            imageUrl: '/images/1.png', 
+            alt: 'Breaking Rules' 
+        },
+        { 
+            id: 2, 
+            imageUrl: '/images/2.png', 
+            alt: 'Rocking the Boat' 
+        },
+        { 
+            id: 3, 
+            imageUrl: '/images/3.png', 
+            alt: 'Group Think' 
+        }
+    ]
 };
 
 // State Management
-let ratings = {
-    awesome: 0,
-    boring: 0,
-    reflective: 0
-};
+let currentPicture = null;
 let userRated = false;
+const ratings = {
+    thoughtprovoking: 0,
+    neutral: 0,
+    meh: 0
+};
 
 // DOM Elements
-const mainBanner = document.getElementById('mainBanner');
-const currentDateElement = document.getElementById('currentDate');
-const wisdomImage = document.getElementById('wisdomImage');
-const resourcesBanner = document.getElementById('resourcesBanner');
-const feedbackBanner = document.getElementById('feedbackBanner');
-const thankYouMessage = document.getElementById('thankYouMessage');
-const ratingButtons = document.querySelectorAll('.rating-button');
+const elements = {
+    mainBanner: document.getElementById('mainBanner'),
+    resourcesBanner: document.getElementById('resourcesBanner'),
+    feedbackBanner: document.getElementById('feedbackBanner'),
+    currentDate: document.getElementById('currentDate'),
+    dailyPicture: document.getElementById('dailyPicture'),
+    reactionButtons: document.querySelectorAll('.reaction-button'),
+    thankYouMessage: document.getElementById('thankYouMessage')
+};
 
-// Initialize the page
-function initializePage() {
+// Initialize
+function init() {
     setupBanners();
-    setupCurrentDate();
-    selectTodaysPicture();
-    setupRatingButtons();
+    setupDate();
+    selectDailyPicture();
+    setupReactions();
 }
 
-// Setup banner images
+// Setup Banners
 function setupBanners() {
-    mainBanner.src = bannerImages.title;
-    resourcesBanner.src = bannerImages.resources;
-    feedbackBanner.src = bannerImages.feedback;
+    elements.mainBanner.src = config.banners.title;
+    elements.resourcesBanner.src = config.banners.resources;
+    elements.feedbackBanner.src = config.banners.feedback;
 }
 
-// Setup current date
-function setupCurrentDate() {
-    const formattedDate = new Intl.DateTimeFormat('en-GB', {
-        weekday: 'long',
-        day: 'numeric',
-        month: 'long',
-        year: 'numeric'
-    }).format(new Date());
-    currentDateElement.textContent = formattedDate;
+// Setup Date
+function setupDate() {
+    const date = new Date();
+    const options = { 
+        weekday: 'long', 
+        year: 'numeric', 
+        month: 'long', 
+        day: 'numeric' 
+    };
+    elements.currentDate.textContent = date.toLocaleDateString('en-GB', options);
 }
 
-// Select today's picture
-function selectTodaysPicture() {
-    const currentDate = new Date();
-    const dayOfYear = Math.floor((currentDate - new Date(currentDate.getFullYear(), 0, 0)) / (1000 * 60 * 60 * 24));
-    const pictureIndex = dayOfYear % pictureDatabase.length;
-    const todaysPicture = pictureDatabase[pictureIndex];
+// Select Daily Picture
+function selectDailyPicture() {
+    const date = new Date();
+    const dayOfYear = Math.floor((date - new Date(date.getFullYear(), 0, 0)) / (1000 * 60 * 60 * 24));
+    const pictureIndex = dayOfYear % config.pictureDatabase.length;
+    currentPicture = config.pictureDatabase[pictureIndex];
     
-    wisdomImage.src = todaysPicture.imageUrl;
-    wisdomImage.alt = todaysPicture.alt;
+    elements.dailyPicture.src = currentPicture.imageUrl;
+    elements.dailyPicture.alt = currentPicture.alt;
 }
 
-// Setup rating buttons
-function setupRatingButtons() {
-    ratingButtons.forEach(button => {
-        button.addEventListener('click', handleRating);
+// Setup Reactions
+function setupReactions() {
+    elements.reactionButtons.forEach(button => {
+        button.addEventListener('click', handleReaction);
     });
 }
 
-// Handle rating click
-function handleRating(event) {
+// Handle Reaction
+function handleReaction(event) {
     if (userRated) return;
 
-    const ratingType = event.currentTarget.dataset.rating;
-    ratings[ratingType]++;
+    const button = event.currentTarget;
+    const reactionType = button.dataset.reaction;
+    const countElement = button.querySelector('.count');
+
+    ratings[reactionType]++;
+    countElement.textContent = ratings[reactionType];
     userRated = true;
 
-    // Update count display
-    const countElement = event.currentTarget.querySelector('.count');
-    countElement.textContent = ratings[ratingType];
-
-    // Disable all rating buttons
-    ratingButtons.forEach(button => {
-        button.disabled = true;
+    // Disable all buttons
+    elements.reactionButtons.forEach(btn => {
+        btn.disabled = true;
     });
 
     // Show thank you message
-    thankYouMessage.classList.remove('hidden');
+    elements.thankYouMessage.classList.remove('hidden');
 }
 
-// Initialize when the page loads
-document.addEventListener('DOMContentLoaded', initializePage);
+// Initialize when DOM is loaded
+document.addEventListener('DOMContentLoaded', init);
