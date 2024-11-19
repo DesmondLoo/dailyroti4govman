@@ -8,19 +8,25 @@ const config = {
     pictureDatabase: [
         { 
             id: 1, 
-            imageUrl: '/images/1.png', 
+            imageUrl: '/images/4.png', 
             alt: 'Breaking Rules' 
         },
         { 
             id: 2, 
-            imageUrl: '/images/2.png', 
+            imageUrl: '/images/5.png', 
             alt: 'Rocking the Boat' 
         },
         { 
             id: 3, 
-            imageUrl: '/images/3.png', 
+            imageUrl: '/images/6.png', 
             alt: 'Group Think' 
         }
+        { 
+            id: 4, 
+            imageUrl: '/images/1.png', 
+            alt: 'Test' 
+        }
+   
     ]
 };
 
