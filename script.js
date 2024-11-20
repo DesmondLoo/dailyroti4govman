@@ -33,10 +33,9 @@ const config = {
         },
         { 
             id: 6, 
-            imageUrl: '/images/2.png', 
+            imageUrl: '/images/5.png', 
             alt: 'Test' 
         }
-   
     ]
 };
 
@@ -44,9 +43,16 @@ const config = {
 let currentPicture = null;
 let userRated = false;
 const ratings = {
-    thoughtprovoking: 0,
-    neutral: 0,
-    meh: 0
+    current: {
+        thoughtprovoking: 0,
+        neutral: 0,
+        meh: 0
+    },
+    total: {
+        thoughtprovoking: 0,
+        neutral: 0,
+        meh: 0
+    }
 };
 
 // DOM Elements
@@ -65,6 +71,7 @@ function init() {
     setupBanners();
     setupDate();
     selectDailyPicture();
+    loadSavedRatings();
     setupReactions();
 }
 
@@ -98,9 +105,37 @@ function selectDailyPicture() {
     elements.dailyPicture.alt = currentPicture.alt;
 }
 
+// Load saved ratings from localStorage
+function loadSavedRatings() {
+    const saved = localStorage.getItem('dailyRoti_ratings');
+    if (saved) {
+        const savedRatings = JSON.parse(saved);
+        ratings.total = savedRatings.total;
+        updateReactionCounts();
+    }
+}
+
+// Save ratings to localStorage
+function saveRatings() {
+    localStorage.setItem('dailyRoti_ratings', JSON.stringify(ratings));
+}
+
+// Update reaction count displays
+function updateReactionCounts() {
+    elements.reactionButtons.forEach(button => {
+        const type = button.dataset.reaction;
+        const countElement = button.querySelector('.count');
+        countElement.textContent = ratings.total[type].toLocaleString();
+    });
+}
+
 // Setup Reactions
 function setupReactions() {
     elements.reactionButtons.forEach(button => {
+        const type = button.dataset.reaction;
+        const countElement = button.querySelector('.count');
+        // Set initial count from total
+        countElement.textContent = ratings.total[type].toLocaleString();
         button.addEventListener('click', handleReaction);
     });
 }
@@ -113,8 +148,12 @@ function handleReaction(event) {
     const reactionType = button.dataset.reaction;
     const countElement = button.querySelector('.count');
 
-    ratings[reactionType]++;
-    countElement.textContent = ratings[reactionType];
+    // Update both current and total counts
+    ratings.current[reactionType]++;
+    ratings.total[reactionType]++;
+    
+    // Display formatted total
+    countElement.textContent = ratings.total[reactionType].toLocaleString();
     userRated = true;
 
     // Disable all buttons
@@ -124,6 +163,9 @@ function handleReaction(event) {
 
     // Show thank you message
     elements.thankYouMessage.classList.remove('hidden');
+
+    // Save updated counts
+    saveRatings();
 }
 
 // Initialize when DOM is loaded
