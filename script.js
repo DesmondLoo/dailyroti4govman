@@ -33,7 +33,7 @@ const config = {
         },
         { 
             id: 6, 
-            imageUrl: '/images/5.png', 
+            imageUrl: '/images/2.png', 
             alt: 'Test' 
         }
    
